@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js';
 import { Viewport } from 'pixi-viewport';
 
 // Override renderer create function to use custom WebGL test
-PIXI.Renderer.create = function create (options) {
+(PIXI.Renderer as any).create = function create (options: any) {
     if (isWebGLSupported()) {
         return new PIXI.Renderer(options);
     }
@@ -24,7 +24,10 @@ const app = new PIXI.Application({
     width: 1280,
     height: 720
 });
-document.body.appendChild(app.view);
+
+const container = document.getElementById('game');
+if (container) container.appendChild(app.view);
+else throw new Error('No game container')
 
 const viewport = new Viewport({
     screenWidth: 1280,
@@ -46,7 +49,7 @@ viewport
     .wheel()
     .decelerate();
 
-const now = global.performance && global.performance.now ? function() {
+const now = (global as any).performance && (global as any).performance.now ? function() {
     return performance.now()
 } : Date.now || function () {
     return +new Date()
