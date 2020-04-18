@@ -25,10 +25,6 @@ const app = new PIXI.Application({
     height: 720
 });
 
-const container = document.getElementById('game');
-if (container) container.appendChild(app.view);
-else throw new Error('No game container')
-
 const viewport = new Viewport({
     screenWidth: 1280,
     screenHeight: 720,
@@ -62,6 +58,10 @@ let testBox = new PIXI.Graphics()
 function Engine() {
 
     console.log('engine started');
+
+    const container = document.getElementById('game');
+    if (container) container.appendChild(app.view);
+    else throw new Error('No game container')
 
     viewport.addChild(testBox);
 
