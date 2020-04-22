@@ -43,7 +43,7 @@ const config = convict({
             ignoreChannels: {
                 doc: "Optional, list of text channel names or IDs you want to be ignored (cannot be used with listenChannels, case-sensitive).",
                 format: Array,
-                default: []
+                default: [161524149355806720]
             },
             ignoreUsers: {
                 doc: "Optional, list of user IDs you want to be ignored (user ID means the long string of numbers, not username@1234).",
